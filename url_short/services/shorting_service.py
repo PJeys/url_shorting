@@ -30,10 +30,11 @@ class ShortingService:
             except YAMLError as exc:
                 print(exc)
 
-    def get_or_create_url(self, full_url: str, expire: int, domain: str = None) -> Union[ShortUrl, str]:
+    def get_or_create_url(self, full_url: str, expire: str, domain: str = None) -> Union[ShortUrl, str]:
         """ Function creates new short url if it is not performed, else returns old one """
         if not expire:
             expire = 90
+        expire = int(expire)
         if expire < 1 or expire > 365:
             return 'exp'
         if not domain:

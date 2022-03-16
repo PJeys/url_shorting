@@ -23,7 +23,7 @@ application = create_app()
 def create_short_url():
     """ Creating short url using ShortingService """
     url = request.args.get('url')
-    exp = int(request.args.get('exp'))
+    exp = request.args.get('exp')
     shorted = ShortingService().get_or_create_url(url, exp)
     if shorted == 'exp':
         return jsonify({'message': f'incorrect expire date - {exp}'}), 400
